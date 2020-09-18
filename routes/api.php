@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\PrizeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('artist',  [ArtistController::class, 'createOrUpdate']);
+
+Route::post('prize',  [PrizeController::class, 'createOrUpdate']);
+Route::delete('prize/{id}',  [PrizeController::class, 'delete']);
+Route::patch('prize/{id}/publish',  [PrizeController::class, 'publish']);
