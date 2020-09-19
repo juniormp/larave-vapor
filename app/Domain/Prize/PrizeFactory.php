@@ -3,15 +3,16 @@
 
 namespace App\Domain\Prize;
 
-use App\Application\Commands\CreatePrizeCommand;
+use App\Application\Commands\CreateOrUpdatePrizeCommand;
 
 
 class PrizeFactory
 {
-    public function create(CreatePrizeCommand $createPrizeCommand): Prize
+    public function create(CreateOrUpdatePrizeCommand $createPrizeCommand): Prize
     {
         $prize = new Prize();
 
+        $prize->id = $createPrizeCommand->getId();
         $prize->name = $createPrizeCommand->getName();
         $prize->category = $createPrizeCommand->getCategory();
         $prize->description = $createPrizeCommand->getDescription();

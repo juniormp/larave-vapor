@@ -8,12 +8,12 @@ use Illuminate\Support\Facades\Hash;
 class CreateOrUpdateArtistRequest extends FormRequest
 {
 
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             'id' => ['nullable', 'filled', 'integer'],
@@ -24,7 +24,7 @@ class CreateOrUpdateArtistRequest extends FormRequest
         ];
     }
 
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return array_merge(
             $this->only(['id', 'name', 'email']),

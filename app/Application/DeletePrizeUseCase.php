@@ -4,6 +4,7 @@
 namespace App\Application;
 
 
+use App\Application\Commands\DeletePrizeCommand;
 use App\Infrastructure\Repository\PrizeRepository;
 
 class DeletePrizeUseCase
@@ -15,14 +16,9 @@ class DeletePrizeUseCase
         $this->prizeRepository = $prizeRepository;
     }
 
-    public function execute(int $id): void
+    public function execute(DeletePrizeCommand $deletePrizeCommand): void
     {
-        $prize = $this->prizeRepository->findById($id);
-
-        if (is_null($prize)) {
-            throw new \Exception("PRIZE_NOT_FOUND");
-        }
-
+        $prize = $this->prizeRepository->findById($deletePrizeCommand->getId());
         $this->prizeRepository->delete($prize);
     }
 }

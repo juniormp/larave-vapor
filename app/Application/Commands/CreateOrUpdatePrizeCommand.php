@@ -4,21 +4,28 @@
 namespace App\Application\Commands;
 
 
-class CreatePrizeCommand
+class CreateOrUpdatePrizeCommand
 {
+    private $id;
     private $name;
     private $category;
     private $description;
     private $image;
     private $artistId;
 
-    public function __construct(string $name, string $category, string $description, string $image, int $artistId)
+    public function __construct(array $data)
     {
-        $this->name = $name;
-        $this->category = $category;
-        $this->description = $description;
-        $this->image = $image;
-        $this->artistId = $artistId;
+        $this->id = $data['id'] ?? null;;
+        $this->name = $data['name'];
+        $this->category = $data['category'];
+        $this->description = $data['description'];
+        $this->image = $data['image'];
+        $this->artistId = $data['artist_id'];
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     public function getName(): string

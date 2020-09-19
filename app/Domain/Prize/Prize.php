@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $description
  * @property string $image
  * @property string $status
- * @property Artist $artist
+ * @property int $artist_id
  * @property string $created_at
  * @property string $updated_at
  */

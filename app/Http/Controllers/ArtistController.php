@@ -21,7 +21,6 @@ class ArtistController extends Controller
     public function createOrUpdate(CreateOrUpdateArtistRequest $request)
     {
         $createOrUpdateCommand = new CreateOrUpdateArtistCommand($request->getAttributes());
-
         $artist = $this->createOrUpdate->execute($createOrUpdateCommand);
 
         return $this->respond(CreateOrUpdateArtistResponse::convertToJson($artist));
