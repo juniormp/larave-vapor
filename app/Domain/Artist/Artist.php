@@ -16,29 +16,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Artist extends Model
 {
-
     public function prizes(): HasMany
     {
         return $this->hasMany(Prize::class);
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-
-    public function getPassword(): string
-    {
-        return $this->password;
     }
 }
