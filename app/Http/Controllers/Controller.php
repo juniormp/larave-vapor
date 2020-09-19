@@ -9,6 +9,22 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use MarcinOrlowski\ResponseBuilder\ResponseBuilder;
 
+/**
+ * @OA\Info(
+ *      version="0.0.0",
+ *      title="Mydly Artist Demo API",
+ *      description="Features for alpha version",
+ *      @OA\Contact(
+ *          email="mauricio@mydly.it"
+ *      )
+ * )
+ *
+ *
+ * @OA\Tag(
+ *     name="Artist",
+ *     description="API Endpoints of Artist"
+ * )
+ */
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

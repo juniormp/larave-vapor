@@ -20,8 +20,8 @@ class AskToPublishPrizeResponse
                 "id" => $prize->getArtist()->id,
                 "name" => $prize->getArtist()->name,
             ],
-            "created_at" => $prize->created_at,
-            "updated_at" => $prize->updated_at,
+            "created_at" => $prize->created_at->toDateTimeString(),
+            "updated_at" => $prize->updated_at->toDateTimeString(),
         ];
     }
 }

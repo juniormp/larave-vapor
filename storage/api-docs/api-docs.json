@@ -1,0 +1,358 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Mydly Artist Demo API",
+        "description": "Features for alpha version",
+        "contact": {
+            "email": "mauricio@mydly.it"
+        },
+        "version": "0.0.0"
+    },
+    "paths": {
+        "/api/artist": {
+            "post": {
+                "tags": [
+                    "Artist"
+                ],
+                "summary": "Create or Update an Artist",
+                "description": "Returns an Artist created or updated",
+                "operationId": "createOrUpdate",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateOrUpdateArtistRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreateOrUpdateArtistResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/artist/{id}/metrics": {
+            "get": {
+                "tags": [
+                    "Artist"
+                ],
+                "summary": "List artist metrics",
+                "description": "Returns list of metrics from an artist",
+                "operationId": "metrics",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/prize": {
+            "post": {
+                "tags": [
+                    "Prize"
+                ],
+                "summary": "Create or Update a Prize",
+                "description": "Returns a Prize created or updated",
+                "operationId": "createOrUpdate",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateOrUpdatePrizeRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreateOrUpdatePrizeResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/prize/{id}": {
+            "delete": {
+                "tags": [
+                    "Prize"
+                ],
+                "summary": "Delete existing prize",
+                "description": "Deletes a prize and returns no content",
+                "operationId": "delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/prize/{id}/publish": {
+            "patch": {
+                "tags": [
+                    "Prize"
+                ],
+                "summary": "Publish Prize to be reviwed by staff team",
+                "description": "Publishes a Prize so can be reviwed by staff team",
+                "operationId": "publish",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "500": {
+                        "description": "Business rule failed validation"
+                    }
+                }
+            }
+        },
+        "/api/artist/{id}/prizes": {
+            "get": {
+                "tags": [
+                    "Prize"
+                ],
+                "summary": "List artist prizes",
+                "description": "Returns list of prizes from an artist",
+                "operationId": "listPrizesByArtist",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CreateOrUpdateArtistRequest": {
+                "title": "Create or Update Artist Request",
+                "required": [
+                    "name",
+                    "email",
+                    "password",
+                    "password_confirmation"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Frah Quintale"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "frah.quintale@gmail.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "secretpassword"
+                    },
+                    "password_confirmation": {
+                        "type": "string",
+                        "example": "secretpassword"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateOrUpdatePrizeRequest": {
+                "title": "Create or Update Prize Request",
+                "required": [
+                    "name",
+                    "category",
+                    "description",
+                    "image",
+                    "artist_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Ticket"
+                    },
+                    "category": {
+                        "type": "string",
+                        "example": "FIRST"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Show tickets for the first in monthly rank"
+                    },
+                    "image": {
+                        "type": "string",
+                        "example": "d879f8f89b1bbf"
+                    },
+                    "artist_id": {
+                        "type": "string",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateOrUpdateArtistResponse": {
+                "title": "Create or Update Artist Response",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Frah Quintale"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "frah.quintale@gmail.com"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "example": "2020-09-20T17:49:42.000000Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "example": "2020-09-20T17:49:42.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateOrUpdatePrizeResponse": {
+                "title": "Create or Update Prize Response",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Ticket"
+                    },
+                    "category": {
+                        "type": "string",
+                        "example": "FIRST"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "OPEN"
+                    },
+                    "artist_id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "example": "2020-09-20T17:49:42.000000Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "example": "2020-09-20T17:49:42.000000Z"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Artist",
+            "description": "API Endpoints of Artist"
+        }
+    ],
+    "security": [
+        []
+    ]
+}

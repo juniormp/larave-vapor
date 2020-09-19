@@ -5,6 +5,7 @@ namespace App\Infrastructure\Repository;
 
 
 use App\Domain\Prize\Prize;
+use Illuminate\Support\Collection;
 
 class PrizeRepository
 {
@@ -23,5 +24,10 @@ class PrizeRepository
     public function delete(Prize $prize): void
     {
         $prize->delete();
+    }
+
+    public function findByArtist(int $id): Collection
+    {
+        return Prize::where('artist_id', '=', $id)->get();
     }
 }

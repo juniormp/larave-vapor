@@ -4,11 +4,34 @@ namespace App\Http\Requests;
 
 use App\Domain\Prize\Category;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
+/**
+ * @OA\Schema(
+ *      title="Create or Update Prize Request",
+ *      type="object",
+ *      required={"name", "category", "description", "image", "artist_id"}
+ * )
+ */
 class CreateOrUpdatePrizeRequest extends FormRequest
 {
+    /** @OA\Property(property="id", type="string", example="1") */
+    public $id;
+
+    /** @OA\Property(property="name", type="string", example="Ticket") */
+    private $name;
+
+    /** @OA\Property(property="category", type="string", example="FIRST") */
+    private $category;
+
+    /** @OA\Property(property="description", type="string", example="Show tickets for the first in monthly rank") */
+    private $description;
+
+    /** @OA\Property(property="image", type="string", example="d879f8f89b1bbf") */
+    private $image;
+
+    /** @OA\Property(property="artist_id", type="string", example="1") */
+    private $artist_id;
 
     public function authorize(): bool
     {

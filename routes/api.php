@@ -25,3 +25,4 @@ Route::post('artist',  [ArtistController::class, 'createOrUpdate']);
 Route::post('prize',  [PrizeController::class, 'createOrUpdate']);
 Route::delete('prize/{id}',  [PrizeController::class, 'delete']);
 Route::patch('prize/{id}/publish',  [PrizeController::class, 'publish']);
+Route::get('artist/{id}/prizes',  [PrizeController::class, 'listPrizesByArtist']);
