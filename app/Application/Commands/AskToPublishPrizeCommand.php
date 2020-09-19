@@ -4,7 +4,7 @@
 namespace App\Application\Commands;
 
 
-class DeletePrizeCommand
+class AskToPublishPrizeCommand
 {
     private $id;
 

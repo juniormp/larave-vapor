@@ -3,6 +3,7 @@
 namespace App\Domain\Prize;
 
 use App\Domain\Artist\Artist;
+use App\Domain\Prize\Exceptions\PrizeAlreadyInReviewException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -61,9 +62,7 @@ class Prize extends Model
 
     public function askToPublish(): void
     {
-        if ($this->status === PrizeStatus::PENDING) {
-            throw new \Exception("PRIZE_ALREADY_PENDING_TO_REVIEW");
-        }
+        throw_if($this->status === PrizeStatus::PENDING, new PrizeAlreadyInReviewException());
 
         $this->status = PrizeStatus::PENDING;
     }

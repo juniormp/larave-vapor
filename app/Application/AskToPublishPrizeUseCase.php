@@ -4,6 +4,9 @@
 namespace App\Application;
 
 
+use App\Application\Commands\AskToPublishPrizeCommand;
+use App\Domain\Prize\Exceptions\PrizeAlreadyInReviewException;
+use App\Domain\Prize\Prize;
 use App\Infrastructure\Repository\PrizeRepository;
 
 class AskToPublishPrizeUseCase
@@ -15,16 +18,16 @@ class AskToPublishPrizeUseCase
         $this->prizeRepository = $prizeRepository;
     }
 
-    public function execute(int $id): void
+    public function execute(AskToPublishPrizeCommand $askToPublishCommand): Prize
     {
-        $prize = $this->prizeRepository->findById($id);
+        $prize = $this->prizeRepository->findById($askToPublishCommand->getId());
 
-        if (is_null($prize)) {
-            throw new \Exception("PRIZE_NOT_FOUND");
+        try {
+            $prize->askToPublish();
+        } catch (PrizeAlreadyInReviewException $exception) {
+            throw $exception->validationException();
         }
 
-        $prize->askToPublish();
-
-        $this->prizeRepository->save($prize);
+        return $this->prizeRepository->save($prize);
     }
 }

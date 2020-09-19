@@ -42,6 +42,10 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $exception)
     {
+        if ($exception instanceof BusinessRuleValidation) {
+            return $this->respondWithBusinessValidation($exception);
+        }
+
         if ($exception instanceof ValidationException) {
             return $this->respondWithValidationError($exception);
         }
@@ -54,6 +58,14 @@ class Handler extends ExceptionHandler
         return ResponseBuilder::asError(ApiCode::VALIDATION_ERROR)
             ->withData($exception->errors())
             ->withHttpCode(HttpCode::UNPROCESSABLE_ENTITY)
+            ->build();
+    }
+
+    private function respondWithBusinessValidation(Throwable $exception)
+    {
+        return ResponseBuilder::asError(ApiCode::BUSINESS_RULE_VALIDATION)
+            ->withData($exception->errors())
+            ->withHttpCode(HttpCode::INTERNAL_SERVER_ERROR)
             ->build();
     }
 }
