@@ -14,11 +14,13 @@ use Illuminate\Support\Facades\Hash;
  */
 class CreateOrUpdateArtistRequest extends FormRequest
 {
-    /** @OA\Property(property="id", type="string", example="1") */
     private $id;
 
     /** @OA\Property(property="name", type="string", example="Frah Quintale") */
     private $name;
+
+    /** @OA\Property(property="bio", type="string", example="Bio description ...") */
+    private $bio;
 
     /** @OA\Property(property="email", type="string", example="frah.quintale@gmail.com") */
     private $email;
@@ -39,6 +41,7 @@ class CreateOrUpdateArtistRequest extends FormRequest
     {
         return [
             'id' => ['nullable', 'filled', 'integer'],
+            'bio' => ['nullable', 'string',  'max:255'],
             'name' => ['required', 'string', 'min:3', 'max:50'],
             'email' => ['required', 'unique:artists,email,' . $this->get('id')],
             'password' => ['required', 'min:5', 'max:25', 'confirmed'],
@@ -49,7 +52,7 @@ class CreateOrUpdateArtistRequest extends FormRequest
     public function getAttributes(): array
     {
         return array_merge(
-            $this->only(['id', 'name', 'email']),
+            $this->only(['id', 'name', 'email', 'bio']),
             ['password' => Hash::make($this->get('password'))]
         );
     }

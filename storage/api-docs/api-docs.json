@@ -28,7 +28,7 @@
                     }
                 },
                 "responses": {
-                    "200": {
+                    "201": {
                         "description": "Successful operation",
                         "content": {
                             "application/json": {
@@ -68,7 +68,9 @@
                         "description": "Successful operation",
                         "content": {
                             "application/json": {
-                                "schema": {}
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListArtistMetricsResponse"
+                                }
                             }
                         }
                     }
@@ -94,7 +96,7 @@
                     }
                 },
                 "responses": {
-                    "200": {
+                    "201": {
                         "description": "Successful operation",
                         "content": {
                             "application/json": {
@@ -130,13 +132,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
+                    "204": {
+                        "description": "Successful operation"
                     },
                     "422": {
                         "description": "Validation error"
@@ -164,13 +161,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
+                    "204": {
+                        "description": "Successful operation"
                     },
                     "422": {
                         "description": "Validation error"
@@ -202,12 +194,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {}
-                            }
-                        }
+                        "description": "Successful operation"
                     }
                 }
             }
@@ -224,13 +211,13 @@
                     "password_confirmation"
                 ],
                 "properties": {
-                    "id": {
-                        "type": "string",
-                        "example": "1"
-                    },
                     "name": {
                         "type": "string",
                         "example": "Frah Quintale"
+                    },
+                    "bio": {
+                        "type": "string",
+                        "example": "Bio description ..."
                     },
                     "email": {
                         "type": "string",
@@ -340,6 +327,24 @@
                     "updated_at": {
                         "type": "string",
                         "example": "2020-09-20T17:49:42.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "ListArtistMetricsResponse": {
+                "title": "List Artist Metrics Response",
+                "properties": {
+                    "followers_number": {
+                        "type": "integer",
+                        "example": "724"
+                    },
+                    "total_streams": {
+                        "type": "integer",
+                        "example": "7000000"
+                    },
+                    "engagement": {
+                        "type": "string",
+                        "example": "24.7%"
                     }
                 },
                 "type": "object"

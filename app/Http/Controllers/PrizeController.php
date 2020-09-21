@@ -55,7 +55,7 @@ class PrizeController extends Controller
      *          @OA\JsonContent(ref="#/components/schemas/CreateOrUpdatePrizeRequest")
      *      ),
      *      @OA\Response(
-     *          response=200,
+     *          response=201,
      *          description="Successful operation",
      *          @OA\JsonContent(ref="#/components/schemas/CreateOrUpdatePrizeResponse")
      *       ),
@@ -92,9 +92,8 @@ class PrizeController extends Controller
      *          )
      *      ),
      *      @OA\Response(
-     *          response=200,
+     *          response=204,
      *          description="Successful operation",
-     *          @OA\JsonContent()
      *       ),
      *      @OA\Response(
      *          response=422,
@@ -130,9 +129,8 @@ class PrizeController extends Controller
      *          )
      *      ),
      *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *          @OA\JsonContent()
+     *          response=204,
+     *          description="Successful operation"
      *       ),
      *      @OA\Response(
      *          response=422,
@@ -175,7 +173,6 @@ class PrizeController extends Controller
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
-     *          @OA\JsonContent()
      *       )
      * )
      * @param ListPrizesByArtistRequest $request

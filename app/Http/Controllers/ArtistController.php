@@ -7,7 +7,6 @@ namespace App\Http\Controllers;
 use App\Application\Commands\CreateOrUpdateArtistCommand;
 use App\Application\CreateOrUpdateArtistUseCase;
 use App\Http\Requests\CreateOrUpdateArtistRequest;
-use App\Http\Requests\ListPrizesByArtistRequest;
 use App\Http\Responses\CreateOrUpdateArtistResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,7 +32,7 @@ class ArtistController extends Controller
      *          @OA\JsonContent(ref="#/components/schemas/CreateOrUpdateArtistRequest")
      *      ),
      *      @OA\Response(
-     *          response=200,
+     *          response=201,
      *          description="Successful operation",
      *          @OA\JsonContent(ref="#/components/schemas/CreateOrUpdateArtistResponse")
      *       ),
@@ -72,7 +71,7 @@ class ArtistController extends Controller
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
-     *          @OA\JsonContent()
+     *         @OA\JsonContent(ref="#/components/schemas/ListArtistMetricsResponse")
      *       )
      * )
      * @param Request $request
