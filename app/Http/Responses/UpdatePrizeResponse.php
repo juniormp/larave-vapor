@@ -7,7 +7,7 @@ namespace App\Http\Responses;
 use App\Domain\Prize\Prize;
 
 /** @OA\Schema(title="Create or Update Prize Response") */
-class CreateOrUpdatePrizeResponse
+class UpdatePrizeResponse
 {
     /** @OA\Property(example="1")
      * @var string

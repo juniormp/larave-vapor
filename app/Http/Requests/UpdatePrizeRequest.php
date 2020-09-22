@@ -13,7 +13,7 @@ use Illuminate\Validation\Rule;
  *      required={"name", "category", "description", "image", "artist_id"}
  * )
  */
-class CreateOrUpdatePrizeRequest extends FormRequest
+class UpdatePrizeRequest extends FormRequest
 {
     /** @OA\Property(property="id", type="string", example="1") */
     public $id;

@@ -110,20 +110,20 @@
                 }
             }
         },
-        "/api/prize": {
+        "/api/prizes": {
             "post": {
                 "tags": [
                     "Prize"
                 ],
-                "summary": "Create or Update a Prize",
-                "description": "Returns a Prize created or updated",
-                "operationId": "createOrUpdate",
+                "summary": "Create Prize",
+                "description": "Returns a Prize created",
+                "operationId": "create",
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/CreateOrUpdatePrizeRequest"
+                                "$ref": "#/components/schemas/CreatePrizeRequest"
                             }
                         }
                     }
@@ -134,7 +134,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/CreateOrUpdatePrizeResponse"
+                                    "$ref": "#/components/schemas/CreatePrizeResponse"
                                 }
                             }
                         }
@@ -273,8 +273,8 @@
                 },
                 "type": "object"
             },
-            "CreateOrUpdatePrizeRequest": {
-                "title": "Create or Update Prize Request",
+            "CreatePrizeRequest": {
+                "title": "Create Prize Request",
                 "required": [
                     "name",
                     "category",
@@ -283,10 +283,6 @@
                     "artist_id"
                 ],
                 "properties": {
-                    "id": {
-                        "type": "string",
-                        "example": "1"
-                    },
                     "name": {
                         "type": "string",
                         "example": "Ticket"
@@ -353,6 +349,43 @@
                 },
                 "type": "object"
             },
+            "UpdatePrizeRequest": {
+                "title": "Create or Update Prize Request",
+                "required": [
+                    "name",
+                    "category",
+                    "description",
+                    "image",
+                    "artist_id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Ticket"
+                    },
+                    "category": {
+                        "type": "string",
+                        "example": "FIRST"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Show tickets for the first in monthly rank"
+                    },
+                    "image": {
+                        "type": "string",
+                        "example": "d879f8f89b1bbf"
+                    },
+                    "artist_id": {
+                        "type": "string",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
             "CreateArtistResponse": {
                 "title": "Create Artist Response",
                 "properties": {
@@ -380,35 +413,28 @@
                 },
                 "type": "object"
             },
-            "CreateOrUpdatePrizeResponse": {
-                "title": "Create or Update Prize Response",
+            "CreatePrizeResponse": {
+                "title": "Create Prize Response",
                 "properties": {
                     "id": {
-                        "type": "string",
                         "example": "1"
                     },
                     "name": {
-                        "type": "string",
                         "example": "Ticket"
                     },
                     "category": {
-                        "type": "string",
                         "example": "FIRST"
                     },
                     "status": {
-                        "type": "string",
                         "example": "OPEN"
                     },
                     "artist_id": {
-                        "type": "string",
                         "example": "1"
                     },
                     "created_at": {
-                        "type": "string",
                         "example": "2020-09-20T17:49:42.000000Z"
                     },
                     "updated_at": {
-                        "type": "string",
                         "example": "2020-09-20T17:49:42.000000Z"
                     }
                 },
@@ -451,6 +477,40 @@
                         "example": "2020-09-20T17:49:42.000000Z"
                     },
                     "updated_at": {
+                        "example": "2020-09-20T17:49:42.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdatePrizeResponse": {
+                "title": "Create or Update Prize Response",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Ticket"
+                    },
+                    "category": {
+                        "type": "string",
+                        "example": "FIRST"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "OPEN"
+                    },
+                    "artist_id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "example": "2020-09-20T17:49:42.000000Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
                         "example": "2020-09-20T17:49:42.000000Z"
                     }
                 },

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property int $id
  * @property int $artist_id
+ * @property Artist $artist
  * @property string $name
  * @property string $category
  * @property string $description

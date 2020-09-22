@@ -14,11 +14,12 @@ use App\Application\DeletePrizeUseCase;
 use App\Application\ListPrizesByArtistUseCase;
 use App\Exceptions\BusinessRuleValidation;
 use App\Http\Requests\AskToPublishPrizeRequest;
-use App\Http\Requests\CreateOrUpdatePrizeRequest;
+use App\Http\Requests\CreatePrizeRequest;
 use App\Http\Requests\DeletePrizeRequest;
 use App\Http\Requests\ListPrizesByArtistRequest;
 use App\Http\Responses\AskToPublishPrizeResponse;
-use App\Http\Responses\CreateOrUpdatePrizeResponse;
+use App\Http\Responses\CreatePrizeResponse;
+use App\Http\Responses\UpdatePrizeResponse;
 use App\Http\Responses\ListArtistMetricsResponse;
 use MarcinOrlowski\ResponseBuilder\ResponseBuilder;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,37 +44,36 @@ class PrizeController extends Controller
         $this->listPrizesByArtist = $listPrizesByArtist;
     }
 
-
     /**
      * @OA\Post(
-     *      path="/api/prize",
-     *      operationId="createOrUpdate",
+     *      path="/api/prizes",
+     *      operationId="create",
      *      tags={"Prize"},
-     *      summary="Create or Update a Prize",
-     *      description="Returns a Prize created or updated",
+     *      summary="Create Prize",
+     *      description="Returns a Prize created",
      *      @OA\RequestBody(
      *          required=true,
-     *          @OA\JsonContent(ref="#/components/schemas/CreateOrUpdatePrizeRequest")
+     *          @OA\JsonContent(ref="#/components/schemas/CreatePrizeRequest")
      *      ),
      *      @OA\Response(
      *          response=201,
      *          description="Successful operation",
-     *          @OA\JsonContent(ref="#/components/schemas/CreateOrUpdatePrizeResponse")
+     *          @OA\JsonContent(ref="#/components/schemas/CreatePrizeResponse")
      *       ),
      *      @OA\Response(
      *          response=422,
      *          description="Validation error",
      *      ),
      * )
-     * @param CreateOrUpdatePrizeRequest $request
+     * @param CreatePrizeRequest $request
      * @return Response
      */
-    public function createOrUpdate(CreateOrUpdatePrizeRequest $request)
+    public function create(CreatePrizeRequest $request)
     {
         $createOrUpdateCommand = new CreateOrUpdatePrizeCommand($request->getAttributes());
         $prize = $this->createOrUpdate->execute($createOrUpdateCommand);
 
-        return $this->respond(CreateOrUpdatePrizeResponse::convertToJson($prize));
+        return $this->respondWithCreated(CreatePrizeResponse::convertToJson($prize));
     }
 
     /**

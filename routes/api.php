@@ -24,8 +24,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('artists',  [ArtistController::class, 'create']);
 Route::put('artists',  [ArtistController::class, 'update']);
 Route::get('artists/{id}/metrics',  [ArtistController::class, 'listMetrics']);
+Route::get('artist/{id}/prizes',  [PrizeController::class, 'listPrizesByArtist']);
 
-Route::post('prize',  [PrizeController::class, 'createOrUpdate']);
+
+Route::post('prize',  [PrizeController::class, 'create']);
 Route::delete('prize/{id}',  [PrizeController::class, 'delete']);
 Route::patch('prize/{id}/publish',  [PrizeController::class, 'publish']);
-Route::get('artist/{id}/prizes',  [PrizeController::class, 'listPrizesByArtist']);
+
+
