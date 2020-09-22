@@ -9,28 +9,18 @@ use Illuminate\Support\Facades\Hash;
  * @OA\Schema(
  *      title="Create or Update Artist Request",
  *      type="object",
- *      required={"name", "email", "password", "password_confirmation"}
+ *      required={"name", "last_name", "bio", "email", "password", "password_confirmation"}
  * )
  */
-class CreateOrUpdateArtistRequest extends FormRequest
+class CreateArtistRequest extends FormRequest
 {
-    private $id;
 
-    /** @OA\Property(property="name", type="string", example="Frah Quintale") */
-    private $name;
-
+    /** @OA\Property(property="name", type="string", example="Frah") */
+    /** @OA\Property(property="last_name", type="string", example="Quintale") */
     /** @OA\Property(property="bio", type="string", example="Bio description ...") */
-    private $bio;
-
     /** @OA\Property(property="email", type="string", example="frah.quintale@gmail.com") */
-    private $email;
-
     /** @OA\Property(property="password", type="string", example="secretpassword") */
-    private $password;
-
     /** @OA\Property(property="password_confirmation", type="string", example="secretpassword") */
-    private $password_confirmation;
-
 
     public function authorize(): bool
     {
@@ -40,10 +30,10 @@ class CreateOrUpdateArtistRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => ['nullable', 'filled', 'integer'],
-            'bio' => ['nullable', 'string',  'max:255'],
             'name' => ['required', 'string', 'min:3', 'max:50'],
-            'email' => ['required', 'unique:artists,email,' . $this->get('id')],
+            'last_name' => ['required', 'string', 'min:3', 'max:50'],
+            'bio' => ['required', 'string',  'max:255'],
+            'email' => ['required', 'unique:artists,email'],
             'password' => ['required', 'min:5', 'max:25', 'confirmed'],
             'password_confirmation' => ['required', 'min:5', 'max:25']
         ];
@@ -52,7 +42,7 @@ class CreateOrUpdateArtistRequest extends FormRequest
     public function getAttributes(): array
     {
         return array_merge(
-            $this->only(['id', 'name', 'email', 'bio']),
+            $this->only(['name', 'last_name', 'bio', 'email']),
             ['password' => Hash::make($this->get('password'))]
         );
     }

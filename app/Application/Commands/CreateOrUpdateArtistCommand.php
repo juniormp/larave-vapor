@@ -4,13 +4,12 @@
 namespace App\Application\Commands;
 
 
-
-use Illuminate\Contracts\Validation\Validator;
-
 class CreateOrUpdateArtistCommand
 {
     private $id;
     private $name;
+    private $lastName;
+    private $bio;
     private $email;
     private $password;
 
@@ -18,6 +17,8 @@ class CreateOrUpdateArtistCommand
     {
         $this->id =  $data['id'] ?? null;
         $this->name =  $data['name'];
+        $this->lastName =  $data['last_name'];
+        $this->bio =  $data['bio'];
         $this->email = $data['email'];
         $this->password = $data['password'];
     }
@@ -30,6 +31,16 @@ class CreateOrUpdateArtistCommand
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function getLastName(): string
+    {
+        return $this->lastName;
+    }
+
+    public function getBio(): string
+    {
+        return $this->bio;
     }
 
     public function getEmail(): string

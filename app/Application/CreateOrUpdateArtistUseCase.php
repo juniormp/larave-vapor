@@ -36,7 +36,9 @@ class CreateOrUpdateArtistUseCase
         $artist = $this->artistRepository->findById($createOrUpdateCommand->getId());
 
         $artist->name = $createOrUpdateCommand->getName();
+        $artist->lastName = $createOrUpdateCommand->getLastName();
         $artist->email = $createOrUpdateCommand->getEmail();
+        $artist->bio = $createOrUpdateCommand->getBio();
         $artist->password = $createOrUpdateCommand->getPassword();
 
         return $artist;

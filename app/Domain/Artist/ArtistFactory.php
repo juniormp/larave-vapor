@@ -13,6 +13,8 @@ class ArtistFactory
         $artist = new Artist();
         $artist->id = $createArtistCommand->getId();
         $artist->name = $createArtistCommand->getName();
+        $artist->lastName = $createArtistCommand->getLastName();
+        $artist->bio = $createArtistCommand->getBio();
         $artist->email = $createArtistCommand->getEmail();
         $artist->password = $createArtistCommand->getPassword();
 

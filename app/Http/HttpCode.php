@@ -6,6 +6,7 @@ namespace App\Http;
 
 class HttpCode
 {
+    public const CREATED = 201;
     public const NO_CONTENT = 204;
 
     public const BAD_REQUEST = 400;

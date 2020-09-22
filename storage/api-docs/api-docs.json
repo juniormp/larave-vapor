@@ -10,19 +10,19 @@
     },
     "paths": {
         "/api/artist": {
-            "post": {
+            "put": {
                 "tags": [
                     "Artist"
                 ],
-                "summary": "Create or Update an Artist",
-                "description": "Returns an Artist created or updated",
-                "operationId": "createOrUpdate",
+                "summary": "Update an Artist",
+                "description": "Returns an Artist updated",
+                "operationId": "update",
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/CreateOrUpdateArtistRequest"
+                                "$ref": "#/components/schemas/UpdateArtistRequest"
                             }
                         }
                     }
@@ -33,7 +33,40 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/CreateOrUpdateArtistResponse"
+                                    "$ref": "#/components/schemas/UpdateArtistResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Artist"
+                ],
+                "summary": "Create an Artist",
+                "description": "Returns an Artist created",
+                "operationId": "create",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateArtistRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreateArtistResponse"
                                 }
                             }
                         }
@@ -202,10 +235,12 @@
     },
     "components": {
         "schemas": {
-            "CreateOrUpdateArtistRequest": {
+            "CreateArtistRequest": {
                 "title": "Create or Update Artist Request",
                 "required": [
                     "name",
+                    "last_name",
+                    "bio",
                     "email",
                     "password",
                     "password_confirmation"
@@ -213,7 +248,11 @@
                 "properties": {
                     "name": {
                         "type": "string",
-                        "example": "Frah Quintale"
+                        "example": "Frah"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "example": "Quintale"
                     },
                     "bio": {
                         "type": "string",
@@ -271,8 +310,17 @@
                 },
                 "type": "object"
             },
-            "CreateOrUpdateArtistResponse": {
-                "title": "Create or Update Artist Response",
+            "UpdateArtistRequest": {
+                "title": "Update Artist Request",
+                "required": [
+                    "id",
+                    "name",
+                    "last_name",
+                    "bio",
+                    "email",
+                    "password",
+                    "password_confirmation"
+                ],
                 "properties": {
                     "id": {
                         "type": "string",
@@ -280,18 +328,53 @@
                     },
                     "name": {
                         "type": "string",
-                        "example": "Frah Quintale"
+                        "example": "Frah"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "example": "Quintale II"
+                    },
+                    "bio": {
+                        "type": "string",
+                        "example": "Bio description with details ..."
                     },
                     "email": {
                         "type": "string",
+                        "example": "frah.quintale2@gmail.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "secretpassword2"
+                    },
+                    "password_confirmation": {
+                        "type": "string",
+                        "example": "secretpassword2"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateArtistResponse": {
+                "title": "Create Artist Response",
+                "properties": {
+                    "id": {
+                        "example": "1"
+                    },
+                    "name": {
+                        "example": "Frah"
+                    },
+                    "last_name": {
+                        "example": "Quintale"
+                    },
+                    "bio": {
+                        "example": "Bio description ..."
+                    },
+                    "email": {
                         "example": "frah.quintale@gmail.com"
                     },
                     "created_at": {
-                        "type": "string",
                         "example": "2020-09-20T17:49:42.000000Z"
                     },
                     "updated_at": {
-                        "type": "string",
                         "example": "2020-09-20T17:49:42.000000Z"
                     }
                 },
@@ -345,6 +428,33 @@
                     "engagement": {
                         "type": "string",
                         "example": "24.7%"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateArtistResponse": {
+                "title": "Update Artist Response",
+                "properties": {
+                    "id": {
+                        "example": "1"
+                    },
+                    "name": {
+                        "example": "Frah"
+                    },
+                    "last_name": {
+                        "example": "Quintale"
+                    },
+                    "bio": {
+                        "example": "Bio description ..."
+                    },
+                    "email": {
+                        "example": "frah.quintale@gmail.com"
+                    },
+                    "created_at": {
+                        "example": "2020-09-20T17:49:42.000000Z"
+                    },
+                    "updated_at": {
+                        "example": "2020-09-20T17:49:42.000000Z"
                     }
                 },
                 "type": "object"

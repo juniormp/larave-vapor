@@ -34,6 +34,12 @@ class Controller extends BaseController
         return ResponseBuilder::asSuccess()->withData($data)->withMessage($message)->build();
     }
 
+    public function respondWithCreated($data, $message = null)
+    {
+        return ResponseBuilder::asSuccess()->withData($data)->withMessage($message)
+            ->withHttpCode(HttpCode::CREATED)->build();
+    }
+
     public function respondWithMessage($message)
     {
         return ResponseBuilder::asSuccess()->withMessage($message)->build();

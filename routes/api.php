@@ -20,7 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('artist',  [ArtistController::class, 'createOrUpdate']);
+
+Route::post('artist',  [ArtistController::class, 'create']);
+
+
+
+Route::put('artist',  [ArtistController::class, 'update']);
 
 Route::post('prize',  [PrizeController::class, 'createOrUpdate']);
 Route::delete('prize/{id}',  [PrizeController::class, 'delete']);
