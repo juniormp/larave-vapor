@@ -19,6 +19,7 @@ use App\Http\Requests\DeletePrizeRequest;
 use App\Http\Requests\ListPrizesByArtistRequest;
 use App\Http\Responses\AskToPublishPrizeResponse;
 use App\Http\Responses\CreateOrUpdatePrizeResponse;
+use App\Http\Responses\ListArtistMetricsResponse;
 use MarcinOrlowski\ResponseBuilder\ResponseBuilder;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -185,5 +186,12 @@ class PrizeController extends Controller
         $prizes = $this->listPrizesByArtist->execute($listPrizesByArtistCommand);
 
         return ResponseBuilder::success($prizes);
+
+        $listPrizesByArtistCommand = new ListPrizesByArtistCommand($request->id);
+        $prizes = $this->listPrizesByArtist->execute($listPrizesByArtistCommand);
+
+        dd(
+            ListArtistMetricsResponse::convertToJson($prizes)
+        );
     }
 }

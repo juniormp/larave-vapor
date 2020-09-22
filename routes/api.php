@@ -21,11 +21,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::post('artist',  [ArtistController::class, 'create']);
-
-
-
-Route::put('artist',  [ArtistController::class, 'update']);
+Route::post('artists',  [ArtistController::class, 'create']);
+Route::put('artists',  [ArtistController::class, 'update']);
+Route::get('artists/{id}/metrics',  [ArtistController::class, 'listMetrics']);
 
 Route::post('prize',  [PrizeController::class, 'createOrUpdate']);
 Route::delete('prize/{id}',  [PrizeController::class, 'delete']);

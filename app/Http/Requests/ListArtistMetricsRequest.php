@@ -1,12 +1,16 @@
 <?php
 
+
 namespace App\Http\Requests;
+
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Route;
 
-
-class ListPrizesByArtistRequest extends FormRequest
+/**
+ * @property int $id
+ */
+class ListArtistMetricsRequest extends FormRequest
 {
     public function authorize(): bool
     {

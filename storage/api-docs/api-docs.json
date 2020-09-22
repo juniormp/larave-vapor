@@ -77,7 +77,7 @@
                 }
             }
         },
-        "/api/artist/{id}/metrics": {
+        "/api/artists/{id}/metrics": {
             "get": {
                 "tags": [
                     "Artist"
@@ -418,15 +418,12 @@
                 "title": "List Artist Metrics Response",
                 "properties": {
                     "followers_number": {
-                        "type": "integer",
                         "example": "724"
                     },
                     "total_streams": {
-                        "type": "integer",
                         "example": "7000000"
                     },
                     "engagement": {
-                        "type": "string",
                         "example": "24.7%"
                     }
                 },

@@ -6,20 +6,26 @@ namespace App\Http\Controllers;
 
 use App\Application\Commands\CreateOrUpdateArtistCommand;
 use App\Application\CreateOrUpdateArtistUseCase;
+use App\Application\ListPrizesByArtistUseCase;
 use App\Http\Requests\CreateArtistRequest;
+use App\Http\Requests\ListArtistMetricsRequest;
 use App\Http\Requests\UpdateArtistRequest;
 use App\Http\Responses\CreateArtistResponse;
 use App\Http\Responses\updateArtistResponse;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class ArtistController extends Controller
 {
     private $createOrUpdate;
+    private $listPrizesByArtist;
 
-    public function __construct(CreateOrUpdateArtistUseCase $createOrUpdate)
+    public function __construct(
+        CreateOrUpdateArtistUseCase $createOrUpdate,
+        ListPrizesByArtistUseCase $listPrizesByArtist
+    )
     {
         $this->createOrUpdate = $createOrUpdate;
+        $this->listPrizesByArtist = $listPrizesByArtist;
     }
 
     /**
@@ -88,7 +94,7 @@ class ArtistController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/artist/{id}/metrics",
+     *      path="/api/artists/{id}/metrics",
      *      operationId="metrics",
      *      tags={"Artist"},
      *      summary="List artist metrics",
@@ -108,9 +114,13 @@ class ArtistController extends Controller
      *         @OA\JsonContent(ref="#/components/schemas/ListArtistMetricsResponse")
      *       )
      * )
-     * @param Request $request
      */
-    public function metrics(Request $request)
+    public function listMetrics(ListArtistMetricsRequest $request)
     {
+        return $this->respond([
+            "followers_number" => "10000",
+            "total_streams" => "7000000",
+            "engagement" => "24.7%"
+        ]);
     }
 }

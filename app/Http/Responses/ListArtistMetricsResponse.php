@@ -4,24 +4,18 @@
 namespace App\Http\Responses;
 
 
-use App\Domain\Artist\Artist;
+use Illuminate\Support\Collection;
 
 /** @OA\Schema(title="List Artist Metrics Response") */
 class ListArtistMetricsResponse
 {
 
-    /** @OA\Property(example="724")
-     * @var int
-     */
-    private $followers_number;
+    /** @OA\Property(property="followers_number", example="724") */
+    /** @OA\Property(property="total_streams", example="7000000") */
+    /** @OA\Property(property="engagement", example="24.7%") */
 
-    /** @OA\Property(example="7000000")
-     * @var int
-     */
-    private $total_streams;
-
-    /** @OA\Property(example="24.7%")
-     * @var string
-     */
-    private $engagement;
+    public static function convertToJson(Collection $prizes): array
+    {
+        return $prizes->toArray();
+    }
 }
