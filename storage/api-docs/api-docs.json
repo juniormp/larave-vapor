@@ -9,7 +9,7 @@
         "version": "0.0.0"
     },
     "paths": {
-        "/api/artist": {
+        "/api/artists": {
             "put": {
                 "tags": [
                     "Artist"
@@ -111,6 +111,39 @@
             }
         },
         "/api/prizes": {
+            "put": {
+                "tags": [
+                    "Prize"
+                ],
+                "summary": "Update Prize",
+                "description": "Returns a Prize Updated",
+                "operationId": "update",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdatePrizeRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdatePrizeResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "Prize"
@@ -350,8 +383,9 @@
                 "type": "object"
             },
             "UpdatePrizeRequest": {
-                "title": "Create or Update Prize Request",
+                "title": "Update Prize Request",
                 "required": [
+                    "id",
                     "name",
                     "category",
                     "description",
@@ -365,7 +399,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "example": "Ticket"
+                        "example": "Ticket - 2"
                     },
                     "category": {
                         "type": "string",
@@ -373,7 +407,7 @@
                     },
                     "description": {
                         "type": "string",
-                        "example": "Show tickets for the first in monthly rank"
+                        "example": "Show tickets for the first in monthly rank - 2"
                     },
                     "image": {
                         "type": "string",
@@ -483,34 +517,31 @@
                 "type": "object"
             },
             "UpdatePrizeResponse": {
-                "title": "Create or Update Prize Response",
+                "title": "Update Prize Response",
                 "properties": {
                     "id": {
-                        "type": "string",
                         "example": "1"
                     },
                     "name": {
-                        "type": "string",
-                        "example": "Ticket"
+                        "example": "Ticket - 2"
                     },
                     "category": {
-                        "type": "string",
                         "example": "FIRST"
                     },
-                    "status": {
+                    "description": {
                         "type": "string",
+                        "example": "Show tickets for the first in monthly rank - 2"
+                    },
+                    "status": {
                         "example": "OPEN"
                     },
                     "artist_id": {
-                        "type": "string",
                         "example": "1"
                     },
                     "created_at": {
-                        "type": "string",
                         "example": "2020-09-20T17:49:42.000000Z"
                     },
                     "updated_at": {
-                        "type": "string",
                         "example": "2020-09-20T17:49:42.000000Z"
                     }
                 },

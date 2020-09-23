@@ -27,8 +27,9 @@ Route::get('artists/{id}/metrics',  [ArtistController::class, 'listMetrics']);
 Route::get('artist/{id}/prizes',  [PrizeController::class, 'listPrizesByArtist']);
 
 
-Route::post('prize',  [PrizeController::class, 'create']);
-Route::delete('prize/{id}',  [PrizeController::class, 'delete']);
-Route::patch('prize/{id}/publish',  [PrizeController::class, 'publish']);
+Route::post('prizes',  [PrizeController::class, 'create']);
+Route::put('prizes',  [PrizeController::class, 'update']);
+Route::delete('prizes/{id}',  [PrizeController::class, 'delete']);
+Route::patch('prizes/{id}/publish',  [PrizeController::class, 'publish']);
 
 

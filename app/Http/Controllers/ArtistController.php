@@ -30,7 +30,7 @@ class ArtistController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/api/artist",
+     *      path="/api/artists",
      *      operationId="create",
      *      tags={"Artist"},
      *      summary="Create an Artist",
@@ -62,7 +62,7 @@ class ArtistController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/api/artist",
+     *      path="/api/artists",
      *      operationId="update",
      *      tags={"Artist"},
      *      summary="Update an Artist",

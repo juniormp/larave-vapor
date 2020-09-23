@@ -7,6 +7,7 @@ namespace App\Application;
 use App\Application\Commands\CreateOrUpdatePrizeCommand;
 use App\Domain\Prize\PrizeFactory;
 use App\Domain\Prize\Prize;
+use App\Infrastructure\Repository\ArtistRepository;
 use App\Infrastructure\Repository\PrizeRepository;
 
 class CreateOrUpdatePrizeUseCase
@@ -39,6 +40,7 @@ class CreateOrUpdatePrizeUseCase
         $prize->category = $createOrUpdateCommand->getCategory();
         $prize->description = $createOrUpdateCommand->getDescription();
         $prize->image = $createOrUpdateCommand->getImage();
+        $prize->artist_id = $createOrUpdateCommand->getArtistId();
 
         return $prize;
     }

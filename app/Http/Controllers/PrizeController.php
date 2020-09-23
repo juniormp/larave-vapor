@@ -17,6 +17,7 @@ use App\Http\Requests\AskToPublishPrizeRequest;
 use App\Http\Requests\CreatePrizeRequest;
 use App\Http\Requests\DeletePrizeRequest;
 use App\Http\Requests\ListPrizesByArtistRequest;
+use App\Http\Requests\UpdatePrizeRequest;
 use App\Http\Responses\AskToPublishPrizeResponse;
 use App\Http\Responses\CreatePrizeResponse;
 use App\Http\Responses\UpdatePrizeResponse;
@@ -74,6 +75,38 @@ class PrizeController extends Controller
         $prize = $this->createOrUpdate->execute($createOrUpdateCommand);
 
         return $this->respondWithCreated(CreatePrizeResponse::convertToJson($prize));
+    }
+
+    /**
+     * @OA\Put(
+     *      path="/api/prizes",
+     *      operationId="update",
+     *      tags={"Prize"},
+     *      summary="Update Prize",
+     *      description="Returns a Prize Updated",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(ref="#/components/schemas/UpdatePrizeRequest")
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Successful operation",
+     *          @OA\JsonContent(ref="#/components/schemas/UpdatePrizeResponse")
+     *       ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation error",
+     *      ),
+     * )
+     * @param CreatePrizeRequest $request
+     * @return Response
+     */
+    public function update(UpdatePrizeRequest $request)
+    {
+        $createOrUpdateCommand = new CreateOrUpdatePrizeCommand($request->getAttributes());
+        $prize = $this->createOrUpdate->execute($createOrUpdateCommand);
+
+        return $this->respondWithCreated(UpdatePrizeResponse::convertToJson($prize));
     }
 
     /**
