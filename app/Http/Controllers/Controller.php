@@ -18,12 +18,6 @@ use MarcinOrlowski\ResponseBuilder\ResponseBuilder;
  *          email="mauricio@mydly.it"
  *      )
  * )
- *
- *
- * @OA\Tag(
- *     name="Artist",
- *     description="API Endpoints of Artist"
- * )
  */
 class Controller extends BaseController
 {

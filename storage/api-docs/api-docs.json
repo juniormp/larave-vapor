@@ -183,7 +183,7 @@
                 "tags": [
                     "Prize"
                 ],
-                "summary": "Delete existing prize",
+                "summary": "Delete existing Prize",
                 "description": "Deletes a prize and returns no content",
                 "operationId": "delete",
                 "parameters": [
@@ -212,7 +212,7 @@
                 "tags": [
                     "Prize"
                 ],
-                "summary": "Publish Prize to be reviwed by staff team",
+                "summary": "Ask to Publish Prize to be Review by Staff Team",
                 "description": "Publishes a Prize so can be reviwed by staff team",
                 "operationId": "publish",
                 "parameters": [
@@ -242,7 +242,7 @@
         "/api/artist/{id}/prizes": {
             "get": {
                 "tags": [
-                    "Prize"
+                    "Artist"
                 ],
                 "summary": "List artist prizes",
                 "description": "Returns list of prizes from an artist",
@@ -584,12 +584,6 @@
             }
         }
     },
-    "tags": [
-        {
-            "name": "Artist",
-            "description": "API Endpoints of Artist"
-        }
-    ],
     "security": [
         []
     ]

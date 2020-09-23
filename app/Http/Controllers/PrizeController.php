@@ -20,8 +20,8 @@ use App\Http\Requests\ListPrizesByArtistRequest;
 use App\Http\Requests\UpdatePrizeRequest;
 use App\Http\Responses\AskToPublishPrizeResponse;
 use App\Http\Responses\CreatePrizeResponse;
+use App\Http\Responses\ListPrizesByArtistResponse;
 use App\Http\Responses\UpdatePrizeResponse;
-use App\Http\Responses\ListArtistMetricsResponse;
 use MarcinOrlowski\ResponseBuilder\ResponseBuilder;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -192,7 +192,7 @@ class PrizeController extends Controller
      * @OA\Get(
      *      path="/api/artist/{id}/prizes",
      *      operationId="listPrizesByArtist",
-     *      tags={"Prize"},
+     *      tags={"Artist"},
      *      summary="List artist prizes",
      *      description="Returns list of prizes from an artist",
      *      @OA\Parameter(
@@ -213,18 +213,11 @@ class PrizeController extends Controller
      * @param int $id
      * @return Response
      */
-    public function listPrizesByArtist(ListPrizesByArtistRequest $request, int $id)
+    public function listPrizesByArtist(ListPrizesByArtistRequest $request)
     {
-        $listPrizesByArtistCommand = new ListPrizesByArtistCommand($id);
-        $prizes = $this->listPrizesByArtist->execute($listPrizesByArtistCommand);
-
-        return ResponseBuilder::success($prizes);
-
         $listPrizesByArtistCommand = new ListPrizesByArtistCommand($request->id);
         $prizes = $this->listPrizesByArtist->execute($listPrizesByArtistCommand);
 
-        dd(
-            ListArtistMetricsResponse::convertToJson($prizes)
-        );
+        return ResponseBuilder::success(ListPrizesByArtistResponse::convertToJson($prizes));
     }
 }

@@ -24,8 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('artists',  [ArtistController::class, 'create']);
 Route::put('artists',  [ArtistController::class, 'update']);
 Route::get('artists/{id}/metrics',  [ArtistController::class, 'listMetrics']);
-Route::get('artist/{id}/prizes',  [PrizeController::class, 'listPrizesByArtist']);
-
+Route::get('artists/{id}/prizes',  [PrizeController::class, 'listPrizesByArtist']);
 
 Route::post('prizes',  [PrizeController::class, 'create']);
 Route::put('prizes',  [PrizeController::class, 'update']);
