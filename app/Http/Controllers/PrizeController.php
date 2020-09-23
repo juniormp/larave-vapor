@@ -111,7 +111,7 @@ class PrizeController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/api/prize/{id}",
+     *      path="/api/prizes/{id}",
      *      operationId="delete",
      *      tags={"Prize"},
      *      summary="Delete existing prize",
@@ -138,17 +138,17 @@ class PrizeController extends Controller
      * @param int $id
      * @return Response
      */
-    public function delete(DeletePrizeRequest $request, int $id)
+    public function delete(DeletePrizeRequest $request)
     {
-        $deleteCommand = new DeletePrizeCommand($id);
+        $deleteCommand = new DeletePrizeCommand($request->id);
         $this->deletePrize->execute($deleteCommand);
 
-        return $this->respond([]);
+        return $this->respondWithNoContent();
     }
 
     /**
      * @OA\Patch(
-     *      path="/api/prize/{id}/publish",
+     *      path="/api/prizes/{id}/publish",
      *      operationId="publish",
      *      tags={"Prize"},
      *      summary="Publish Prize to be reviwed by staff team",
@@ -180,7 +180,7 @@ class PrizeController extends Controller
      * @return Response
      * @throws BusinessRuleValidation
      */
-    public function publish(AskToPublishPrizeRequest $request, int $id)
+    public function publish(AskToPublishPrizeRequest $request)
     {
         $askToPublishCommand = new AskToPublishPrizeCommand($id);
         $prize = $this->askToPublishPrize->execute($askToPublishCommand);

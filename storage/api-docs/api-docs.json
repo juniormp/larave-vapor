@@ -178,7 +178,7 @@
                 }
             }
         },
-        "/api/prize/{id}": {
+        "/api/prizes/{id}": {
             "delete": {
                 "tags": [
                     "Prize"

@@ -40,6 +40,12 @@ class Controller extends BaseController
             ->withHttpCode(HttpCode::CREATED)->build();
     }
 
+    public function respondWithNoContent($message = null)
+    {
+        return ResponseBuilder::asSuccess()->withMessage($message)
+            ->withHttpCode(HttpCode::NO_CONTENT)->build();
+    }
+
     public function respondWithMessage($message)
     {
         return ResponseBuilder::asSuccess()->withMessage($message)->build();
