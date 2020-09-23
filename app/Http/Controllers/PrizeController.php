@@ -114,7 +114,7 @@ class PrizeController extends Controller
      *      path="/api/prizes/{id}",
      *      operationId="delete",
      *      tags={"Prize"},
-     *      summary="Delete existing prize",
+     *      summary="Delete existing Prize",
      *      description="Deletes a prize and returns no content",
      *      @OA\Parameter(
      *          name="id",
@@ -151,7 +151,7 @@ class PrizeController extends Controller
      *      path="/api/prizes/{id}/publish",
      *      operationId="publish",
      *      tags={"Prize"},
-     *      summary="Publish Prize to be reviwed by staff team",
+     *      summary="Ask to Publish Prize to be Review by Staff Team",
      *      description="Publishes a Prize so can be reviwed by staff team",
      *      @OA\Parameter(
      *          name="id",
@@ -163,7 +163,7 @@ class PrizeController extends Controller
      *          )
      *      ),
      *      @OA\Response(
-     *          response=204,
+     *          response=200,
      *          description="Successful operation"
      *       ),
      *      @OA\Response(
@@ -182,7 +182,7 @@ class PrizeController extends Controller
      */
     public function publish(AskToPublishPrizeRequest $request)
     {
-        $askToPublishCommand = new AskToPublishPrizeCommand($id);
+        $askToPublishCommand = new AskToPublishPrizeCommand($request->id);
         $prize = $this->askToPublishPrize->execute($askToPublishCommand);
 
         return $this->respond(AskToPublishPrizeResponse::convertToJson($prize));

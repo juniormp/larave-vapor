@@ -207,7 +207,7 @@
                 }
             }
         },
-        "/api/prize/{id}/publish": {
+        "/api/prizes/{id}/publish": {
             "patch": {
                 "tags": [
                     "Prize"
@@ -227,7 +227,7 @@
                     }
                 ],
                 "responses": {
-                    "204": {
+                    "200": {
                         "description": "Successful operation"
                     },
                     "422": {
@@ -420,6 +420,37 @@
                 },
                 "type": "object"
             },
+            "AskToPublishPrizeResponse": {
+                "title": "Ask to Publish Prize to be Review by Staff Team",
+                "properties": {
+                    "id": {
+                        "example": "1"
+                    },
+                    "name": {
+                        "example": "Ticket"
+                    },
+                    "category": {
+                        "example": "FIRST"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Show tickets for the first in monthly rank"
+                    },
+                    "status": {
+                        "example": "PENDING"
+                    },
+                    "artist_id": {
+                        "example": "1"
+                    },
+                    "created_at": {
+                        "example": "2020-09-20T17:49:42.000000Z"
+                    },
+                    "updated_at": {
+                        "example": "2020-09-20T17:49:42.000000Z"
+                    }
+                },
+                "type": "object"
+            },
             "CreateArtistResponse": {
                 "title": "Create Artist Response",
                 "properties": {
@@ -458,6 +489,10 @@
                     },
                     "category": {
                         "example": "FIRST"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Show tickets for the first in monthly rank"
                     },
                     "status": {
                         "example": "OPEN"

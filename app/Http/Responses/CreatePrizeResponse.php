@@ -13,6 +13,7 @@ class CreatePrizeResponse
     /** @OA\Property(property="id", example="1") */
     /** @OA\Property(property="name", example="Ticket") */
     /** @OA\Property(property="category", example="FIRST") */
+    /** @OA\Property(property="description", type="string", example="Show tickets for the first in monthly rank") */
     /** @OA\Property(property="status", example="OPEN") */
     /** @OA\Property(property="artist_id", example="1")  */
     /** @OA\Property(property="created_at", example="2020-09-20T17:49:42.000000Z") */
